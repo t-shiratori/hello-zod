@@ -1,3 +1,4 @@
+import { ChangeEvent, ChangeEventHandler } from 'react';
 import { UseFormRegister } from 'react-hook-form';
 import { TFormSchema } from '../../schema/form';
 
@@ -7,6 +8,8 @@ type Props = {
   fieldName: keyof TFormSchema;
   errorMessage?: string;
   type?: 'text' | 'number' | 'date';
+  handleChange?: (e: ChangeEvent) => void;
+  deps?: string[];
 };
 
 export const InputText = ({
@@ -15,12 +18,20 @@ export const InputText = ({
   fieldName,
   errorMessage,
   type = 'text',
+  handleChange,
+  deps,
 }: Props) => {
   return (
     <div>
       <label htmlFor={fieldName}>{label}</label>
       <input
-        {...register(fieldName, { valueAsNumber: type === 'number' })}
+        {...register(fieldName, {
+          valueAsNumber: type === 'number',
+          onChange: (e) => {
+            handleChange?.(e);
+          },
+          deps,
+        })}
         type={type}
         id={fieldName}
         name={fieldName}

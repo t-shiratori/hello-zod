@@ -1,8 +1,8 @@
-import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { InputText } from './components/InputText';
 import { formSchema, TFormSchema } from './schema/form';
+import { useEffect } from 'react';
 
 function App() {
   const {
@@ -11,7 +11,12 @@ function App() {
     watch,
     formState: { errors },
     getValues,
+    clearErrors,
+    trigger,
   } = useForm<TFormSchema>({
+    defaultValues: {
+      amount: 0,
+    },
     resolver: zodResolver(formSchema),
   });
 
@@ -21,17 +26,35 @@ function App() {
     <form onSubmit={handleSubmit(onSubmit)}>
       <InputText
         register={register}
-        label={'name'}
-        fieldName={'name'}
-        errorMessage={errors.name?.message}
+        label={'商品名'}
+        fieldName={'itemName'}
+        errorMessage={errors.itemName?.message}
       />
 
       <InputText
         register={register}
-        label={'age'}
-        fieldName={'age'}
+        label={'数量'}
+        fieldName={'amount'}
         type={'number'}
-        errorMessage={errors.age?.message}
+        errorMessage={errors.amount?.message}
+      />
+
+      <InputText
+        register={register}
+        label={'出品開始'}
+        fieldName={'startDate'}
+        type={'date'}
+        deps={['startDate', 'endDate']}
+        errorMessage={errors.startDate?.message}
+      />
+
+      <InputText
+        register={register}
+        label={'出品終了'}
+        fieldName={'endDate'}
+        type={'date'}
+        deps={['startDate', 'endDate']}
+        errorMessage={errors.endDate?.message}
       />
 
       <input type="submit" />
