@@ -3,7 +3,7 @@ import * as dayjs from 'dayjs';
 
 export const formSchema = z
   .object({
-    itemName: z.string().min(1, { message: '商品名は必須です' }),
+    itemName: z.string().min(1, { message: '商品名を入力してください' }),
     amount: z
       .number({
         invalid_type_error: '数値を入力してください',
