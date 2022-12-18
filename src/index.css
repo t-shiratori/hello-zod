@@ -21,6 +21,11 @@ body {
   min-height: 100vh;
 }
 
+input[type='submit'] {
+  padding: 4px 20px;
+  cursor: pointer;
+}
+
 .inputItem {
   display: flex;
   margin: 0 0 20px 0;
@@ -42,4 +47,10 @@ body {
   left: 0px;
   margin: 4px 0;
   color: rgb(228, 3, 3);
+}
+
+.formFooter {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
 }

@@ -52,7 +52,9 @@ function App() {
         errorMessage={errors.endDate?.message}
       />
 
-      <input type="submit" />
+      <div className="formFooter">
+        <input type="submit" />
+      </div>
     </form>
   );
 }
