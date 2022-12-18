@@ -1,5 +1,5 @@
 import { ZodError } from 'zod';
-import { helloSchema } from './index';
+import { helloSchema } from '../hello/index';
 
 describe('helloSchema', () => {
   test('parse success', () => {
