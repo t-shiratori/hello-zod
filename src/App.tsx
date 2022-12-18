@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { InputText } from './components/InputText';
+import { InputItem } from './components/InputItem';
 import { formSchema, TFormSchema } from './schema/form';
 
 function App() {
@@ -19,14 +19,14 @@ function App() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <InputText
+      <InputItem
         register={register}
         label={'商品名'}
         fieldName={'itemName'}
         errorMessage={errors.itemName?.message}
       />
 
-      <InputText
+      <InputItem
         register={register}
         label={'数量'}
         fieldName={'amount'}
@@ -34,7 +34,7 @@ function App() {
         errorMessage={errors.amount?.message}
       />
 
-      <InputText
+      <InputItem
         register={register}
         label={'出品開始日'}
         fieldName={'startDate'}
@@ -43,7 +43,7 @@ function App() {
         errorMessage={errors.startDate?.message}
       />
 
-      <InputText
+      <InputItem
         register={register}
         label={'出品終了日'}
         fieldName={'endDate'}

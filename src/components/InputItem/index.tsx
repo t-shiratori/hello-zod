@@ -12,7 +12,7 @@ type Props = {
   deps?: string[];
 };
 
-export const InputText = ({
+export const InputItem = ({
   register,
   label,
   fieldName,
