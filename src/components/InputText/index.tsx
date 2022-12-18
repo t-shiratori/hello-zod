@@ -22,21 +22,23 @@ export const InputText = ({
   deps,
 }: Props) => {
   return (
-    <div>
+    <div className="inputItem">
       <label htmlFor={fieldName}>{label}</label>
-      <input
-        {...register(fieldName, {
-          valueAsNumber: type === 'number',
-          onChange: (e) => {
-            handleChange?.(e);
-          },
-          deps,
-        })}
-        type={type}
-        id={fieldName}
-        name={fieldName}
-      ></input>
-      <p className="error">{errorMessage}</p>
+      <div className="inputWrapper">
+        <input
+          {...register(fieldName, {
+            valueAsNumber: type === 'number',
+            onChange: (e) => {
+              handleChange?.(e);
+            },
+            deps,
+          })}
+          type={type}
+          id={fieldName}
+          name={fieldName}
+        ></input>
+        <p className="error">{errorMessage}</p>
+      </div>
     </div>
   );
 };
