@@ -1,4 +1,4 @@
-import { z, ZodError } from 'zod';
+import { ZodError } from 'zod';
 import { arrayRefineSchema } from './index';
 
 describe('arrayRefineSchema', () => {
@@ -15,9 +15,10 @@ describe('arrayRefineSchema', () => {
       const array = [1, 2, 3];
       const parsed = arrayRefineSchema.safeParse(array);
       expect(parsed.success).toBeFalsy();
-      expect((parsed as any).error).toBeInstanceOf(ZodError);
       const { error } = parsed as any;
-      console.log((error as ZodError).issues);
+      expect(error).toBeInstanceOf(ZodError);
+      expect(error.issues.length).toEqual(3);
+      console.log(error.issues);
       /**
         console.log
           [
@@ -44,16 +45,16 @@ describe('arrayRefineSchema', () => {
             }
           ]
        */
-      expect((parsed as any).error.issues.length).toEqual(3);
     });
 
     test('one is not string', () => {
       const array = [1, '2', '3'];
       const parsed = arrayRefineSchema.safeParse(array);
       expect(parsed.success).toBeFalsy();
-      expect((parsed as any).error).toBeInstanceOf(ZodError);
       const { error } = parsed as any;
-      console.log((error as ZodError).issues);
+      expect(error).toBeInstanceOf(ZodError);
+      expect(error.issues.length).toEqual(1);
+      console.log(error.issues);
       /**
        console.log
         [
@@ -66,16 +67,16 @@ describe('arrayRefineSchema', () => {
           }
         ]
        */
-      expect((parsed as any).error.issues.length).toEqual(1);
     });
 
     test('invalid length', () => {
       const array = ['a', 'b', 'c', 'd'];
       const parsed = arrayRefineSchema.safeParse(array);
       expect(parsed.success).toBeFalsy();
-      expect((parsed as any).error).toBeInstanceOf(ZodError);
       const { error } = parsed as any;
-      console.log((error as ZodError).issues);
+      expect(error).toBeInstanceOf(ZodError);
+      expect(error.issues.length).toEqual(1);
+      console.log(error.issues);
       /**
         console.log
           [
@@ -87,16 +88,16 @@ describe('arrayRefineSchema', () => {
             }
           ]
        */
-      expect((parsed as any).error.issues.length).toEqual(1);
     });
 
     test('has duplicates', () => {
       const array = ['a', 'a', 'c', 'd'];
       const parsed = arrayRefineSchema.safeParse(array);
       expect(parsed.success).toBeFalsy();
-      expect((parsed as any).error).toBeInstanceOf(ZodError);
       const { error } = parsed as any;
-      console.log((error as ZodError).issues);
+      expect(error).toBeInstanceOf(ZodError);
+      expect(error.issues.length).toEqual(2);
+      console.log(error.issues);
       /**
        console.log
         [
@@ -114,7 +115,6 @@ describe('arrayRefineSchema', () => {
           }
         ]
        */
-      expect((parsed as any).error.issues.length).toEqual(2);
     });
   });
 });
