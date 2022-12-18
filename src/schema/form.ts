@@ -29,12 +29,12 @@ export const formSchema = z
       const { startDate, endDate } = args;
       const startDateObject = dayjs(startDate);
       const endDateObject = dayjs(endDate);
-      // 開始日が終了日より前かどうか
-      return startDateObject.isBefore(endDateObject);
+      // 終了日が開始日より未来かどうか
+      return endDateObject.isAfter(startDateObject);
     },
     {
-      message: '開始日は終了日の前にしてください',
-      path: ['startDate'],
+      message: '終了日は開始日より未来の日付にしてください',
+      path: ['endDate'],
     }
   );
 

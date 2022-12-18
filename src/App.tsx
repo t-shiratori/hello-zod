@@ -36,7 +36,7 @@ function App() {
 
       <InputText
         register={register}
-        label={'出品開始'}
+        label={'出品開始日'}
         fieldName={'startDate'}
         type={'date'}
         deps={['startDate', 'endDate']}
@@ -45,7 +45,7 @@ function App() {
 
       <InputText
         register={register}
-        label={'出品終了'}
+        label={'出品終了日'}
         fieldName={'endDate'}
         type={'date'}
         deps={['startDate', 'endDate']}
