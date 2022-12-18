@@ -1,4 +1,4 @@
-import { ChangeEvent, ChangeEventHandler } from 'react';
+import { ChangeEvent } from 'react';
 import { UseFormRegister } from 'react-hook-form';
 import { TFormSchema } from '../../schema/form';
 
