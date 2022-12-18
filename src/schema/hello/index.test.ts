@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { ZodError } from 'zod';
 import { helloSchema } from './index';
 
 describe('helloSchema', () => {
@@ -10,6 +10,6 @@ describe('helloSchema', () => {
   test('parse fail ', () => {
     const parsed = helloSchema.safeParse(1);
     expect(parsed.success).toBeFalsy();
-    expect((parsed as any).error).toBeInstanceOf(z.ZodError);
+    expect((parsed as any).error).toBeInstanceOf(ZodError);
   });
 });
