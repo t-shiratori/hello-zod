@@ -2,17 +2,12 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { InputText } from './components/InputText';
 import { formSchema, TFormSchema } from './schema/form';
-import { useEffect } from 'react';
 
 function App() {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
-    getValues,
-    clearErrors,
-    trigger,
   } = useForm<TFormSchema>({
     defaultValues: {
       amount: 0,
